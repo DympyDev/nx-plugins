@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Layout",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "route": {
+      "type": "string",
+      "description": "Where should the layout be added? (surround with double-quotes for args)"
+    },
+    "project": {
+      "type": "string",
+      "description": "The project where the layout will be located.",
+      "x-prompt": "Which project will this layout be located in?",
+      "x-dropdown": "projects"
+    },
+    "loadData": {
+      "type": "boolean",
+      "description": "Add load-function?"
+    },
+    "serverSide": {
+      "type": "boolean",
+      "description": "Execute load-function server-side?"
+    }
+  },
+  "required": ["project"]
+}

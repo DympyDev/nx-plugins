@@ -1,0 +1,12 @@
+<script lang="ts">
+  <%- scriptContent %>
+</script>
+
+<section>
+  <h1>Hello layout!</h1>
+  <slot />
+</section>
+
+<style>
+  /* Do styling magic here! */
+</style>

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Route",
+  "title": "Add a route to a SvelteKit-application",
+  "type": "object",
+  "properties": {
+    "route": {
+      "type": "string",
+      "description": "What should the route path be? (surround with double-quotes for args)",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "project": {
+      "type": "string",
+      "description": "The project where the route will be located.",
+      "x-prompt": "Which project will this route be located in?",
+      "x-dropdown": "projects"
+    },
+    "loadData": {
+      "type": "boolean",
+      "description": "Add load-function?"
+    },
+    "serverSide": {
+      "type": "boolean",
+      "description": "Execute load-function server-side?"
+    }
+  },
+  "required": ["route", "project"]
+}

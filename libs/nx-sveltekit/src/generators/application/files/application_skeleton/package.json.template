@@ -1,0 +1,11 @@
+{
+	"name": "<%= name %>",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"test": "vitest",
+		"e2e": "playwright test"
+	},
+	"type": "module"
+}

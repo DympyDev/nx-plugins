@@ -1,0 +1,9 @@
+<script lang="ts">
+  <%- scriptContent %>
+</script>
+
+<h1>Hello route (<%= route %>)!</h1>
+
+<style>
+  /* Do styling magic here! */
+</style>

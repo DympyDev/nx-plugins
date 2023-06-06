@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Application",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "template": {
+      "type": "string",
+      "description": "",
+      "default": "skeleton",
+      "x-prompt": {
+        "message": "Which type of application would you like to generate?",
+        "type": "list",
+        "items": [
+          {
+            "value": "skeleton",
+            "label": "Skeleton"
+          },
+          {
+            "value": "demo",
+            "label": "Demo"
+          }
+        ]
+      }
+    },
+    "adapter": {
+      "type": "string",
+      "description": "",
+      "default": "auto",
+      "x-prompt": {
+        "message": "What sveltekit-adapter should we use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "node",
+            "label": "Node"
+          },
+          {
+            "value": "static",
+            "label": "Static"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["name", "template", "adapter"]
+}

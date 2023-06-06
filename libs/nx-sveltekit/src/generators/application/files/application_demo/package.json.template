@@ -1,0 +1,15 @@
+{
+	"name": "<%= name %>",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"preview": "vite preview",
+		"e2e": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "vitest",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"type": "module"
+}

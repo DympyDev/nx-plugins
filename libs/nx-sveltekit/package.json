@@ -1,0 +1,14 @@
+{
+  "name": "@dympydev/nx-sveltekit",
+  "description": "A set of NX generators and executors for SvelteKit apps",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dympydev/nx-plugins/libs/nx-sveltekit#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dympydev/nx-plugins.git"
+  },
+  "type": "commonjs",
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "dependencies": {}
+}

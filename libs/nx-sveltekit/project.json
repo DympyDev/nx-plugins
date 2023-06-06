@@ -1,0 +1,71 @@
+{
+  "name": "nx-sveltekit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nx-sveltekit/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx-sveltekit",
+        "main": "libs/nx-sveltekit/src/index.ts",
+        "tsConfig": "libs/nx-sveltekit/tsconfig.lib.json",
+        "assets": [
+          "libs/nx-sveltekit/*.md",
+          {
+            "input": "./libs/nx-sveltekit/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-sveltekit/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-sveltekit",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/nx-sveltekit",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nx-sveltekit {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/nx-sveltekit/**/*.ts",
+          "libs/nx-sveltekit/package.json",
+          "libs/nx-sveltekit/executors.json",
+          "libs/nx-sveltekit/generators.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/nx-sveltekit/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

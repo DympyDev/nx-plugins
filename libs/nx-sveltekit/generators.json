@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "application generator"
+    },
+    "route": {
+      "factory": "./src/generators/route/generator",
+      "schema": "./src/generators/route/schema.json",
+      "description": "route generator"
+    },
+    "layout": {
+      "factory": "./src/generators/layout/generator",
+      "schema": "./src/generators/layout/schema.json",
+      "description": "layout generator"
+    }
+  }
+}
