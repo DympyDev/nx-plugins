@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@dympydev/nx-plugin-utils": ["libs/nx-plugin-utils/src/index.ts"],
       "@dympydev/nx-sveltekit": ["libs/nx-sveltekit/src/index.ts"]
     }
   },
