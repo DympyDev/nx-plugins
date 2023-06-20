@@ -1,0 +1,14 @@
+{
+  "name": "@dympydev/nx-container-apps",
+  "description": "A set of NX generators and executors for container (such as Docker) apps",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/dympydev/nx-plugins/tree/main/libs/nx-container-apps#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dympydev/nx-plugins.git"
+  },
+  "type": "commonjs",
+  "generators": "./generators.json",
+  "executors": "./executors.json"
+}

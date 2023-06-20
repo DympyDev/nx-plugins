@@ -5,12 +5,14 @@
   "scripts": {
     "build": "nx build",
     "serve": "nx serve",
+    "stop": "nx stop",
     "preview": "nx preview",
     "test": "nx test",
     "e2e": "nx e2e",
     "lint": "nx lint",
     "check": "nx check",
-    "publish": "nx publish"
+    "publish": "nx publish",
+    "graph": "nx graph"
   },
   "private": true,
   "dependencies": {

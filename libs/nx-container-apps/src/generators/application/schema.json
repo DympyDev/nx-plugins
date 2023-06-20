@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ComposeFile",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "What name would you like to use?",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "template": {
+      "type": "string",
+      "description": "What docker-compose template should be used?",
+      "default": "nginx_example",
+      "x-prompt": {
+        "message": "What docker-compose template should be used?",
+        "type": "list",
+        "items": [
+          {
+            "value": "nginx_example",
+            "label": "nginx_example"
+          },
+          {
+            "value": "supabase",
+            "label": "supabase"
+          },
+          {
+            "value": "pocketbase",
+            "label": "pocketbase"
+          },
+          {
+            "value": "directus",
+            "label": "directus"
+          }
+        ]
+      }
+    },
+    "appPort": {
+      "type": "number",
+      "default": 3000,
+      "description": "What port should the container-app expose?"
+    },
+    "containerTooling": {
+      "type": "string",
+      "description": "What container tooling should be used?",
+      "default": "docker",
+      "x-prompt": {
+        "message": "What container tooling should be used?",
+        "type": "list",
+        "items": [
+          {
+            "value": "docker",
+            "label": "docker"
+          },
+          {
+            "value": "podman",
+            "label": "podman"
+          }
+        ]
+      }
+    },
+    "useDockerV1": {
+      "type": "boolean",
+      "description": "Should `docker-compose` be used instead of `docker compose`?"
+    }
+  },
+  "required": ["name", "template", "appPort"]
+}

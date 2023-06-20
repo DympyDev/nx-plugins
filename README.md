@@ -7,6 +7,7 @@ This repository is currently made with/for [NX 16.2.2](https://nx.dev), but I'll
 
 ## Packages
 
-| Package                                               | NPM                                                                  | Description                                                                                                 |
-| ----------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [@dympydev/nx-sveltekit](libs/nx-sveltekit/README.md) | ![npm (scoped)](https://img.shields.io/npm/v/@dympydev/nx-sveltekit) | An NX plugin that adds generators/executors for SvelteKit applications, based on the create-svelte package. |
+| Package                                                         | NPM                                                                       | Description                                                                                                 |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [@dympydev/nx-sveltekit](libs/nx-sveltekit/README.md)           | ![npm (scoped)](https://img.shields.io/npm/v/@dympydev/nx-sveltekit)      | An NX plugin that adds generators/executors for SvelteKit applications, based on the create-svelte package. |
+| [@dympydev/nx-container-apps](libs/nx-container-apps/README.md) | ![npm (scoped)](https://img.shields.io/npm/v/@dympydev/nx-container-apps) | An NX plugin that adds generators/executors for Docker-compose applications, based on templates.            |

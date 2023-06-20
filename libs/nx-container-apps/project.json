@@ -1,0 +1,71 @@
+{
+  "name": "nx-container-apps",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nx-container-apps/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx-container-apps",
+        "main": "libs/nx-container-apps/src/index.ts",
+        "tsConfig": "libs/nx-container-apps/tsconfig.lib.json",
+        "assets": [
+          "libs/nx-container-apps/*.md",
+          {
+            "input": "./libs/nx-container-apps/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-container-apps/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-container-apps",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/nx-container-apps",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nx-docker-compose {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/nx-container-apps/**/*.ts",
+          "libs/nx-container-apps/package.json",
+          "libs/nx-container-apps/generators.json",
+          "libs/nx-container-apps/executors.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/nx-container-apps/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

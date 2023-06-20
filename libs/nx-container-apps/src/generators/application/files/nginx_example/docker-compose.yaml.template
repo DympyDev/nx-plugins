@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  nginx-example-<%= kebabName %>:
+    image: nginx
+    container_name: nginx-example-<%= kebabName %>
+    ports:
+      - <%= appPort %>:80
+    volumes:
+      - ./src:/usr/share/nginx/html
