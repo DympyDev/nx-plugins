@@ -2,7 +2,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'nx preview <%= name %>',
+		command: 'nx preview <%= kebabName %>',
 		port: 4173
 	},
 	testDir: 'tests',

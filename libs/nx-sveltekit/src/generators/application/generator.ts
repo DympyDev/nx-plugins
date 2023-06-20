@@ -13,6 +13,7 @@ import {
 import { ApplicationGeneratorSchema } from './schema';
 import { existsSync } from 'fs';
 import { join } from 'path';
+import { convertToKebabCase } from '@dympydev/nx-plugin-utils';
 
 const ADAPTER_MAPPING: Record<string, Record<string, string>> = {
   auto: {
@@ -78,7 +79,7 @@ export async function applicationGenerator(
     .join('/');
   options.projectDepth = projectDepth;
 
-  addProjectConfiguration(tree, options.name, {
+  addProjectConfiguration(tree, convertToKebabCase(options.name), {
     root: projectRoot,
     projectType: 'application',
     sourceRoot: `${projectRoot}/src`,
@@ -133,7 +134,10 @@ export async function applicationGenerator(
     tree,
     join(__dirname, 'files', `application_${options.template}`),
     projectRoot,
-    options
+    {
+      ...options,
+      kebabName: convertToKebabCase(options.name),
+    }
   );
 
   let installCallback: GeneratorCallback;
