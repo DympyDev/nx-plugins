@@ -6,12 +6,11 @@
  *
  * You might need to authenticate with NPM before running this script.
  */
-
-import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import chalk from 'chalk';
 
 import devkit from '@nx/devkit';
+import { join } from 'path';
 const { readCachedProjectGraph } = devkit;
 
 function invariant(condition, message) {
@@ -40,25 +39,20 @@ invariant(
   `Could not find project "${name}" in the workspace. Is the project.json configured correctly?`
 );
 
-const outputPath = project.data?.targets?.build?.options?.outputPath;
+const srcPackageJson = join(project.data?.sourceRoot,'..', 'package.json');
 invariant(
-  outputPath,
-  `Could not find "build.options.outputPath" of project "${name}". Is project.json configured  correctly?`
+  srcPackageJson,
+  `Could not find "sourceRoot" of project "${name}". Is project.json configured correctly?`
 );
 
-process.chdir(outputPath);
-
-// Verify the version in "package.json" before publishing
+// Updating the version in "package.json" before publishing
 try {
-  const json = JSON.parse(readFileSync(`package.json`).toString());
-  if (json.version !== version) {
-    throw new Error('Non-matching package versions');
-  }
+  const json = JSON.parse(readFileSync(srcPackageJson).toString());
+  json.version = version;
+  writeFileSync(srcPackageJson, JSON.stringify(json, null, 2));
 } catch (e) {
   console.error(
-    chalk.bold.red(`Error reading package.json file from library build output or version did not match.`)
+    chalk.bold.red(`Error reading package.json file from library src.`)
   );
+  process.exit(1);
 }
-
-// Execute "npm publish" to publish
-execSync(`npm publish --access public --tag ${tag}`);

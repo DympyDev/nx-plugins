@@ -11,6 +11,9 @@
         "outputPath": "dist/libs/nx-sveltekit",
         "main": "libs/nx-sveltekit/src/index.ts",
         "tsConfig": "libs/nx-sveltekit/tsconfig.lib.json",
+        "external": "none",
+        "updateBuildableProjectDepsInPackageJson": false,
+        "clean": true,
         "assets": [
           "libs/nx-sveltekit/*.md",
           {
@@ -37,8 +40,15 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs nx-sveltekit {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/version.mjs nx-sveltekit {args.ver} {args.tag}",
+          "nx build nx-sveltekit --prod",
+          "node tools/scripts/publish.mjs nx-sveltekit {args.ver} {args.tag}"
+        ],
+        "parallel": false
+      }
     },
     "lint": {
       "executor": "@nx/linter:eslint",

@@ -11,6 +11,8 @@
         "outputPath": "dist/libs/nx-container-apps",
         "main": "libs/nx-container-apps/src/index.ts",
         "tsConfig": "libs/nx-container-apps/tsconfig.lib.json",
+        "external": "none",
+        "updateBuildableProjectDepsInPackageJson": false,
         "assets": [
           "libs/nx-container-apps/*.md",
           {
@@ -37,8 +39,15 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs nx-docker-compose {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node tools/scripts/version.mjs nx-container-apps {args.ver} {args.tag}",
+          "nx build nx-container-apps --prod",
+          "node tools/scripts/publish.mjs nx-container-apps {args.ver} {args.tag}"
+        ],
+        "parallel": false
+      }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
