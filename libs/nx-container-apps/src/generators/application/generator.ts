@@ -31,6 +31,7 @@ export async function composeFileGenerator(
         executor: '@dympydev/nx-container-apps:start',
         options: {
           containerTooling: options.containerTooling,
+          port: options.appPort,
           useDockerV1: options.useDockerV1,
           envFile: containerEnvFile,
         },
@@ -39,6 +40,7 @@ export async function composeFileGenerator(
         executor: '@dympydev/nx-container-apps:start',
         options: {
           containerTooling: options.containerTooling,
+          port: options.appPort,
           useDockerV1: options.useDockerV1,
           runAsDaemon: true,
           envFile: containerEnvFile,

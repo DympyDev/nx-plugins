@@ -9,6 +9,7 @@ export default async function runExecutor(
   console.log('Executor ran for start', options);
 
   const cmdArr = [
+    `NX_CONTAINER_APP_PORT=${options.port}`,
     [options.containerTooling, 'compose'].join(options.useDockerV1 ? '-' : ' '),
     'up',
   ];

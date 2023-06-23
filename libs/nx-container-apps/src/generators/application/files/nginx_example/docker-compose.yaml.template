@@ -5,6 +5,6 @@ services:
     image: nginx
     container_name: nginx-example-<%= kebabName %>
     ports:
-      - <%= appPort %>:80
+      - ${NX_CONTAINER_APP_PORT}:80
     volumes:
       - ./src:/usr/share/nginx/html

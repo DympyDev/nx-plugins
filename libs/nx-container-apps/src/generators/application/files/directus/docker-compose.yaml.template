@@ -3,7 +3,7 @@ services:
   directus-<%= kebabName %>:
     image: directus/directus:latest
     ports:
-      - <%= appPort %>:8055
+      - ${NX_CONTAINER_APP_PORT}:8055
     volumes:
       - ./uploads:/directus/uploads
       - ./database:/directus/database

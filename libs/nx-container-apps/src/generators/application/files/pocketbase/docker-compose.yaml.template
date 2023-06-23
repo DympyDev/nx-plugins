@@ -5,7 +5,7 @@ services:
     image: ghcr.io/muchobien/pocketbase:latest
     container_name: pocketbase-<%= kebabName %>
     ports:
-      - <%= appPort %>:8090
+      - ${NX_CONTAINER_APP_PORT}:8090
     volumes:
       - ./data:/pb_data
       - ./public:/pb_public
