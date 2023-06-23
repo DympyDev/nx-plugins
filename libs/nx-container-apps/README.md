@@ -18,19 +18,20 @@ The currently supported templates are:
 ### application
 
 The application-generator allows you to add a container application, based on the chosen template, to your NX-monorepo. It integrates with the rest of the NX-ecosystem by using the start and stop executors also present in this plugin. The generated application will contain 3 commands:
+
 - **serve:** starts the application and keep the console open for container logs.
 - **daemon:** starts the application as a daemon (using the `-d`-flag).
 - **stop:** executes the `compose stop` command for the application.
 
 While generating the application, you also have access to a number of options, namely:
 
-| Property         | Default       | Description                                                                                                                                                                     |
-| ---------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name             |               | The name for this new NX application.                                                                                                                                           |
-| template         | nginx_example | The template to use, options are mentioned at the top of this document.                                                                                                         |
-| appPort          | 3000          | The port the container application should expose, in case of the out-of-the-box template this is automatically mapped to the default exposed port of the container application. |
-| containerTooling | docker        | The container-tooling to use, currently only Docker and Podman are supported. In both cases it is up to the user to set-up either docker-compose or podman-compose.             |
-| useDockerV1      | false         | Whether to use the old docker-compose syntax (`docker-compose ...`) or the new V2 variant (`docker compose ...`).                                                               |
+| Property         | Default       | Description                                                                                                                                                          |
+| ---------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name             |               | The name for this new NX application.                                                                                                                                |
+| template         | nginx_example | The template to use, options are mentioned at the top of this document.                                                                                              |
+| appPort          | 3000          | The port the container application should expose, in case of the out-of-the-box template this is automatically mapped to the "port"-property in the start-executors. |
+| containerTooling | docker        | The container-tooling to use, currently only Docker and Podman are supported. In both cases it is up to the user to set-up either docker-compose or podman-compose.  |
+| useDockerV1      | false         | Whether to use the old docker-compose syntax (`docker-compose ...`) or the new V2 variant (`docker compose ...`).                                                    |
 
 ## Executors:
 
@@ -40,12 +41,13 @@ The start-executor uses the "nx:run-commands"-executor to run the correct `compo
 
 When using the application generator, most of these options will be pre-set based on the chosen template.
 
-| Option           | Required | Description                                                                           |
-| ---------------- | -------- | ------------------------------------------------------------------------------------- |
-| containerTooling | Yes      | Which container-tooling to use, either "docker" or "podman".                          |
-| runAsDaemon      | Yes      | Whether the container application should run in daemon-mode (`docker compose up -d`). |
-| useDockerV1      | Yes      | Whether to use the V2 or V1 command-syntax for docker-compose.                        |
-| envFile          | No       | The path to an environment file that has to be loaded before executing the command.   |
+| Option           | Required | Description                                                                                                        |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| port             | Yes      | Which port should be used for the (main) container application, is automatically set during the command execution. |
+| containerTooling | Yes      | Which container-tooling to use, either "docker" or "podman".                                                       |
+| runAsDaemon      | Yes      | Whether the container application should run in daemon-mode (`docker compose up -d`).                              |
+| useDockerV1      | Yes      | Whether to use the V2 or V1 command-syntax for docker-compose.                                                     |
+| envFile          | No       | The path to an environment file that has to be loaded before executing the command.                                |
 
 ### stop
 
@@ -58,6 +60,14 @@ When using the application generator, most of these options will be pre-set base
 | containerTooling | Yes      | Which container-tooling to use, either "docker" or "podman".                        |
 | useDockerV1      | Yes      | Whether to use the V2 or V1 command-syntax for docker-compose.                      |
 | envFile          | No       | The path to an environment file that has to be loaded before executing the command. |
+
+## (Implicit) Dependencies
+
+When you've generated a container application using this plugin, it is not automagically attached to your other NX projects (as we don't know in what projects it will be used). Luckily for us, NX has introduced a feature called Implicit Dependencies where you can manually link these container apps to your other NX projects.
+
+They've thoroughly documented this functionality on their website, but for the sake of ease-of-use I'll link it here:
+
+[NX documentation for implictDependencies](https://nx.dev/reference/project-configuration#implicitdependencies)
 
 ## Known limitations:
 
