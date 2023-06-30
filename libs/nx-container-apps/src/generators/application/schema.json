@@ -36,6 +36,14 @@
           {
             "value": "directus",
             "label": "directus"
+          },
+          {
+            "value": "mongodb",
+            "label": "mongodb"
+          },
+          {
+            "value": "postgres",
+            "label": "postgres"
           }
         ]
       }

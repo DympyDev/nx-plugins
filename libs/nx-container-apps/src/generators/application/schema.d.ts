@@ -5,7 +5,9 @@ export interface ComposeFileGeneratorSchema {
     | 'pocketbase'
     | 'supabase'
     | 'appwrite'
-    | 'directus';
+    | 'directus'
+    | 'mongodb'
+    | 'postgres';
   appPort: number;
   containerTooling: 'docker' | 'podman';
   useDockerV1: boolean;
