@@ -17,7 +17,7 @@ import { convertToKebabCase } from '@dympydev/nx-plugin-utils';
 
 const ADAPTER_MAPPING: Record<string, Record<string, string>> = {
   auto: {
-    '@sveltejs/adapter-auto': '^2.1.0',
+    '@sveltejs/adapter-auto': '^3.0.0',
   },
   node: {
     '@sveltejs/adapter-node': '^1.2.4',
@@ -28,21 +28,23 @@ const ADAPTER_MAPPING: Record<string, Record<string, string>> = {
 };
 
 const SHARED_DEV_DEPENDENCIES: Record<string, string> = {
-  '@sveltejs/kit': '^1.5.0',
-  svelte: '^3.54.0',
-  vite: '^4.3.6',
+  '@sveltejs/kit': '^2.0.0',
+  svelte: '^4.2.7',
+  vite: '^5.0.3',
   '@playwright/test': '^1.28.1',
-  '@typescript-eslint/eslint-plugin': '^5.45.0',
-  '@typescript-eslint/parser': '^5.45.0',
-  eslint: '^8.28.0',
-  'eslint-config-prettier': '^8.5.0',
-  'eslint-plugin-svelte': '^2.26.0',
-  prettier: '^2.8.0',
-  'prettier-plugin-svelte': '^2.8.1',
-  'svelte-check': '^3.0.1',
+  '@typescript-eslint/eslint-plugin': '^7.0.0',
+  '@typescript-eslint/parser': '^7.0.0',
+  eslint: '^8.56.0',
+  'eslint-config-prettier': '^9.1.0',
+  'eslint-plugin-svelte': '^2.35.1',
+  prettier: '^3.1.1',
+  'prettier-plugin-svelte': '^3.1.2',
+  'svelte-check': '^3.6.0',
   tslib: '^2.4.1',
   typescript: '^5.0.0',
-  vitest: '^0.25.3',
+  vitest: '^1.2.0',
+  '@sveltejs/vite-plugin-svelte': '^3.0.0',
+  '@types/eslint': '^8.56.0',
 };
 
 const SKELETON_SVELTEKIT_DEPENDENCIES: Record<string, string> = {};
